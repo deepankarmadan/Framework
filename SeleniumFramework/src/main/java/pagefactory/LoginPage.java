@@ -12,11 +12,13 @@ public class LoginPage extends AbstractClass{
 	public LoginPage(){
 		PageFactory.initElements(eventdriver, this);
 	}
+	
 	@FindBy(how=How.ID,  using = "username")
 	WebElement username;
 	
 	public LoginPage typeUserName(String UN)
 	{
+		//WebElement username=locateElement(locator, using)
 		type(username,UN);
 		return this;
 	}
