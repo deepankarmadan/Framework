@@ -1,6 +1,7 @@
 package pagetestcases;
 
 import pagefactory.LoginPage;
+import pagefactory.MyHomePage;
 import wrappers.TestNGImplementation;
 import dataprovider.ReadExcel;
 import java.io.IOException;
@@ -17,16 +18,13 @@ public class EditLeadPF extends TestNGImplementation{
 		datasheetname="editlead";
 	}
 	@Test(dataProvider="fetchData")
-	public void editleadpf(String UN,String PWD){
+	public void editleadpf(String FN){
 		
-	new LoginPage().
-	typeUserName(UN).
-	typePassword(PWD).
-	clickSubmit().
-	clickcrmsfaimage().
-	clickCreateLeadLink().
-	clickFindLeads();
-	
+		new MyHomePage()
+		.clickCreateLeadLink()
+		.clickFindLeads().
+		typeFirstName(FN).
+		clickFindLeads();*/
 	}
 	
 

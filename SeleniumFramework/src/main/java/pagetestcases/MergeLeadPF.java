@@ -9,6 +9,7 @@ import org.testng.annotations.BeforeClass;
 
 import dataprovider.ReadExcel;
 import pagefactory.LoginPage;
+import pagefactory.MyHomePage;
 import wrappers.TestNGImplementation;
 
 public class MergeLeadPF extends TestNGImplementation{
@@ -20,12 +21,8 @@ public class MergeLeadPF extends TestNGImplementation{
 	@Test(dataProvider="fetchData")
 	public void mergeLeadPF(String UN, String PWD)
 	{
-		new LoginPage().
-		typeUserName(UN).
-		typePassword(PWD).
-		clickSubmit().
-		clickcrmsfaimage().
-		clickLeadsMainLink();
+		new MyHomePage()
+			.clickLeadsMainLink();
 	}
 	
 

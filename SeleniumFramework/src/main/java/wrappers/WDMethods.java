@@ -147,15 +147,14 @@ public class WDMethods extends WDEvent implements WDInterface {
 	
 	public void invokeApp(String browser,String URL){
 		
-		
-		if (browser.equalsIgnoreCase("CHROME")){
+/*		if (browser.equalsIgnoreCase("CHROME")){
 			System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver.exe");
 			driver = new ChromeDriver();
 		}
 		else{
 			System.setProperty("webdriver.gecko.driver", "./drivers/geckodriver.exe");
 			driver = new FirefoxDriver();
-		}
+		}*/
 		eventdriver= new EventFiringWebDriver(driver);
 		WDEvent handler=new WDEvent();
 		eventdriver.register(handler);

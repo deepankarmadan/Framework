@@ -1,6 +1,7 @@
 package pagetestcases;
 
 import pagefactory.LoginPage;
+import pagefactory.MyHomePage;
 import wrappers.TestNGImplementation;
 import org.testng.annotations.BeforeClass;
 import java.io.IOException;
@@ -19,12 +20,9 @@ public class CreateLeadPF extends TestNGImplementation{
 	
 	@Test(dataProvider="fetchData")
 	public void createleadPF(String UN, String PWD){
-	new LoginPage().
-	typeUserName(UN).
-	typePassword(PWD).
-	clickSubmit().
-	clickcrmsfaimage().
-	clickCreateLeadLink();
+	
+	new MyHomePage()
+		.clickCreateLeadLink();
 	}
 	
 
