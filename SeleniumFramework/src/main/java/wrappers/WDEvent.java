@@ -6,8 +6,9 @@ import org.openqa.selenium.NoSuchWindowException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.events.WebDriverEventListener;
+import reporting.ExtentReportsReporter;
 
-public class WDEvent implements WebDriverEventListener{
+public abstract  class  WDEvent extends ExtentReportsReporter implements WebDriverEventListener{
 
 	@Override
 	public void afterAlertAccept(WebDriver arg0) {
@@ -23,21 +24,30 @@ public class WDEvent implements WebDriverEventListener{
 
 	@Override
 	public void afterChangeValueOf(WebElement arg0, WebDriver arg1, CharSequence[] arg2) {
-		// TODO Auto-generated method stub
-		
+		/*String webelementname=arg0.toString().split("xpath: ")[1];
+		String webdriver=arg1.toString().substring(28,60);
+		String desc="afterChangeValueOf for WebElement "+webelementname+ " Successful ";
+		reportStep(desc, "INFO");
+		System.out.println("afterChangeValueOf for WebElement "+webelementname+ " for the Webdriver " +webdriver);		*/
 	}
 
 	@Override
 	public void afterClickOn(WebElement arg0, WebDriver arg1) {
 		String webelementname=arg0.toString().split("xpath: ")[1];
 		String webdriver=arg1.toString().substring(28,60);
+		String desc="afterClickOn for WebElement "+webelementname+ " Successful ";
 		System.out.println("afterClickOn for WebElement "+webelementname+ " for the Webdriver " +webdriver);
+		reportStep(desc, "INFO");
 	}
 
 	@Override
 	public void afterFindBy(By arg0, WebElement arg1, WebDriver arg2) {
-		// TODO Auto-generated method stub
-		
+		//String webelementname=arg0.toString().split("xpath: ")[1];
+		/*String webdriver=arg1.toString().substring(28,60);
+		String desc="afterFindBy for WebElement "+arg0webelementname+ " Successful ";
+		reportStep(desc, "INFO");
+		System.out.println("afterFindBy for WebElement "+arg0webelementname+ " for the Webdriver " +webdriver);
+		*/
 	}
 
 	@Override
@@ -136,6 +146,7 @@ public class WDEvent implements WebDriverEventListener{
 	public void onException(Throwable throwable, WebDriver driver) {
 
 		
+		
 		switch(throwable.toString()){
 			case ("NoSuchElementException"):
 				System.out.println("The element could not be found");;
@@ -189,5 +200,8 @@ public class WDEvent implements WebDriverEventListener{
 		}
 		
 	}
+
+	@Override
+	public abstract long takeSnap();
 
 }

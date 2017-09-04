@@ -1,12 +1,16 @@
 package wrappers;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -156,7 +160,7 @@ public class WDMethods extends WDEvent implements WDInterface {
 			driver = new FirefoxDriver();
 		}*/
 		eventdriver= new EventFiringWebDriver(driver);
-		WDEvent handler=new WDEvent();
+		WDEvent handler=new WDMethods();
 		eventdriver.register(handler);
 		
 		eventdriver.manage().window().maximize();
@@ -167,5 +171,25 @@ public class WDMethods extends WDEvent implements WDInterface {
 	public void quitApp()
 	{
 		eventdriver.close();
+	}
+;
+	@Override
+	public long takeSnap() {
+		long snapshotnumber= (long) Math.floor(Math.random() * 900000000L) + 10000000L;
+		File src = eventdriver.getScreenshotAs(OutputType.FILE);
+		File dest = new File("./reports/snaps/"+snapshotnumber+".jpg");
+		try {
+			FileUtils.copyFile(src, dest);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return snapshotnumber;
+	}
+
+	@Override
+	public EventFiringWebDriver getEventDriver() {
+		
+		return eventdriver;
 	}
 }

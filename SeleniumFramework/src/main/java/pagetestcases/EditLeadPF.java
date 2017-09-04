@@ -16,13 +16,18 @@ public class EditLeadPF extends TestNGImplementation{
 	@BeforeClass
 	public void setValues(){
 		datasheetname="editlead";
+		testcasename="EditLead";
+		testcasedescription="EditLead";
+		authorname="Deepankar";
+		category="Smoke";
+		
 	}
 	@Test(dataProvider="fetchData")
 	public void editleadpf(String FN){
 		
 		new MyHomePage()
 		.clickCreateLeadLink()
-		.clickFindLeads().
+		.clickFindLeads();/*.
 		typeFirstName(FN).
 		clickFindLeads();*/
 	}

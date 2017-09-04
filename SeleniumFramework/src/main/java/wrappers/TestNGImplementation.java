@@ -17,6 +17,8 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.AfterTest;
 
 import dataprovider.ReadExcel;
 import pagefactory.LoginPage;
@@ -25,6 +27,12 @@ public class TestNGImplementation extends WDMethods{
 	
 	public String datasheetname;
 	public static Properties property;
+	
+	@BeforeTest
+	public void beforeTest()
+	{
+		beforeTestExtentReports();
+	}
 	
 	@BeforeSuite
 	public static void loadConfig() throws FileNotFoundException, IOException
@@ -48,6 +56,7 @@ public class TestNGImplementation extends WDMethods{
 		else {
 			System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver.exe");
 		}
+		beforeMethodExtentReports();
 		invokeApp("chrome",property.getProperty("URL"));
 		new LoginPage().
 		typeUserName(property.getProperty("UN")).
@@ -59,8 +68,14 @@ public class TestNGImplementation extends WDMethods{
 	@AfterMethod
 	public void afterMethod()
 	{		
+		aftermethodExtentReports();
 		System.out.println("afterMethod");
 		quitApp();
+	}
+	
+	@AfterTest
+	public void afterTest(){
+		afterTestExtentReports();
 	}
 	
 	@DataProvider(name="fetchData")
